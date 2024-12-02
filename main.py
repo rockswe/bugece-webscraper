@@ -48,6 +48,13 @@ for card in event_cards:
         except:
             image_url = "N/A"
 
+        # extract date
+        try:
+            date_element = card.find_element(By.CSS_SELECTOR, "span[data-css-1ondyc7] time")
+            event_date = date_element.text.strip()
+        except:
+            event_date = "N/A"
+
         # extract start and end time
         try:
             time_elements = card.find_elements(By.CSS_SELECTOR, "div[data-css-1ozg4x2] span")
@@ -68,6 +75,7 @@ for card in event_cards:
             "title": title,
             "link": event_link,
             "image_url": image_url,
+            "date": event_date,
             "start_time": start_time,
             "end_time": end_time,
             "location": location,
